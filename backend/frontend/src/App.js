@@ -2,135 +2,133 @@ import logo from './logo.svg';
 import './App.css';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import Header from './components/Header.js'
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {/* <img src={'https://i.scdn.co/image/ab67616d0000b27325b055377757b3cdd6f26b78'} />
-        <h3><b>The College Dropout</b></h3>
-        <h3>Kanye West</h3>
-        <h3>2004</h3> */}
+        <Header></Header>
         <Grid container spacing={6} columnSpacing={{ xs: 6, sm: 2, md: 3 }}>
           <Grid item xs={2}>
             <div>
               <img 
                 style={{width:"100%", height:"100%"}}
-                src={'https://i.scdn.co/image/ab67616d0000b27325b055377757b3cdd6f26b78'}
+                src={'https://i.scdn.co/image/ab67616d0000b273cad190f1a73c024e5a40dddd'}
               />
-              <b>The College Dropout</b><br />
+              <b>Donda </b><br />
               Kanye West <br />
-              2004
+              2021
             </div>
           </Grid>
           <Grid item xs={2}>
             <div>
               <img 
                 style={{width:"100%", height:"100%"}}
-                src={'https://i.scdn.co/image/ab67616d0000b27325b055377757b3cdd6f26b78'}
+                src={'https://i.scdn.co/image/ab67616d0000b2731bb797bbfe2480650b6c2964'}
               />
-              <b>The College Dropout</b><br />
+              <b>JESUS IS KING</b><br />
               Kanye West <br />
-              2004
+              2019
             </div>
           </Grid>
           <Grid item xs={2}>
             <div>
               <img 
                 style={{width:"100%", height:"100%"}}
-                src={'https://i.scdn.co/image/ab67616d0000b27325b055377757b3cdd6f26b78'}
+                src={'https://i.scdn.co/image/ab67616d0000b273013c00ee367dd85396f79c82'}
               />
-              <b>The College Dropout</b><br />
-              Kanye West <br />
-              2004
+              <b>KIDS SEE GHOSTS</b><br />
+              Kanye West, Kid Cudi, KIDS SEE GHOSTS <br />
+              2018
             </div>
           </Grid>
           <Grid item xs={2}>
             <div>
               <img 
                 style={{width:"100%", height:"100%"}}
-                src={'https://i.scdn.co/image/ab67616d0000b27325b055377757b3cdd6f26b78'}
+                src={'https://i.scdn.co/image/ab67616d0000b2730cd942c1a864afa4e92d04f2'}
               />
-              <b>The College Dropout</b><br />
+              <b>ye</b><br />
               Kanye West <br />
-              2004
+              2018
             </div>
           </Grid>
           <Grid item xs={2}>
             <div>
               <img 
                 style={{width:"100%", height:"100%"}}
-                src={'https://i.scdn.co/image/ab67616d0000b27325b055377757b3cdd6f26b78'}
+                src={'https://i.scdn.co/image/ab67616d0000b2732a7db835b912dc5014bd37f4'}
               />
-              <b>The College Dropout</b><br />
+              <b>The Life of Pablo</b><br />
               Kanye West <br />
-              2004
+              2016
             </div>
           </Grid>
           <Grid item xs={2}>
             <div>
               <img 
                 style={{width:"100%", height:"100%"}}
-                src={'https://i.scdn.co/image/ab67616d0000b27325b055377757b3cdd6f26b78'}
+                src={'https://i.scdn.co/image/ab67616d0000b2731dacfbc31cc873d132958af9'}
               />
-              <b>The College Dropout</b><br />
+              <b>Yeezus</b><br />
               Kanye West <br />
-              2004
+              2013
             </div>
           </Grid>
           <Grid item xs={2}>
             <div>
               <img 
                 style={{width:"100%", height:"100%"}}
-                src={'https://i.scdn.co/image/ab67616d0000b27325b055377757b3cdd6f26b78'}
+                src={'https://i.scdn.co/image/ab67616d0000b273bf2d62374f877d312b34e67a'}
               />
-              <b>The College Dropout</b><br />
-              Kanye West <br />
-              2004
+              <b>Watch the Throne</b><br />
+              Kanye West, JAY-Z <br />
+              2011
             </div>
           </Grid>
           <Grid item xs={2}>
             <div>
               <img 
                 style={{width:"100%", height:"100%"}}
-                src={'https://i.scdn.co/image/ab67616d0000b27325b055377757b3cdd6f26b78'}
+                src={'https://i.scdn.co/image/ab67616d0000b273d9194aa18fa4c9362b47464f'}
               />
-              <b>The College Dropout</b><br />
+              <b>My Beautiful Dark Twisted Fantasy</b><br />
               Kanye West <br />
-              2004
+              2010
             </div>
           </Grid>
           <Grid item xs={2}>
             <div>
               <img 
                 style={{width:"100%", height:"100%"}}
-                src={'https://i.scdn.co/image/ab67616d0000b27325b055377757b3cdd6f26b78'}
+                src={'https://i.scdn.co/image/ab67616d0000b273346d77e155d854735410ed18'}
               />
-              <b>The College Dropout</b><br />
+              <b>808s & Heartbreak</b><br />
               Kanye West <br />
-              2004
+              2008
             </div>
           </Grid>
           <Grid item xs={2}>
             <div>
               <img 
                 style={{width:"100%", height:"100%"}}
-                src={'https://i.scdn.co/image/ab67616d0000b27325b055377757b3cdd6f26b78'}
+                src={'https://i.scdn.co/image/ab67616d0000b27326f7f19c7f0381e56156c94a'}
               />
-              <b>The College Dropout</b><br />
+              <b>Graduation</b><br />
               Kanye West <br />
-              2004
+              2007
             </div>
           </Grid>
           <Grid item xs={2}>
             <div>
               <img 
                 style={{width:"100%", height:"100%"}}
-                src={'https://i.scdn.co/image/ab67616d0000b27325b055377757b3cdd6f26b78'}
+                src={'https://i.scdn.co/image/ab67616d0000b273428d2255141c2119409a31b2'}
               />
-              <b>The College Dropout</b><br />
+              <b>Late Registration</b><br />
               Kanye West <br />
-              2004
+              2005
             </div>
           </Grid>
           <Grid item xs={2}>
