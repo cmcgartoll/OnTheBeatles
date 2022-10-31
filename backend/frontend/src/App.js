@@ -14,9 +14,10 @@ function App() {
         <Grid container spacing={6} columnSpacing={{ xs: 6, sm: 2, md: 3 }}>
           <Grid item xs={2}>
             <div>
-              <div class="myFlexedImage">
-              <img src={'https://i.scdn.co/image/ab67616d0000b27325b055377757b3cdd6f26b78'} />
-              </div>
+              <img 
+                style={{width:"100%", height:"100%"}}
+                src={'https://i.scdn.co/image/ab67616d0000b27325b055377757b3cdd6f26b78'}
+              />
               <b>The College Dropout</b><br />
               Kanye West <br />
               2004
@@ -24,9 +25,10 @@ function App() {
           </Grid>
           <Grid item xs={2}>
             <div>
-              <div class="myFlexedImage">
-                <img src={'https://i.scdn.co/image/ab67616d0000b27325b055377757b3cdd6f26b78'} />
-              </div>
+              <img 
+                style={{width:"100%", height:"100%"}}
+                src={'https://i.scdn.co/image/ab67616d0000b27325b055377757b3cdd6f26b78'}
+              />
               <b>The College Dropout</b><br />
               Kanye West <br />
               2004
@@ -34,9 +36,10 @@ function App() {
           </Grid>
           <Grid item xs={2}>
             <div>
-              <div class="myFlexedImage">
-              <img src={'https://i.scdn.co/image/ab67616d0000b27325b055377757b3cdd6f26b78'} />
-              </div>
+              <img 
+                style={{width:"100%", height:"100%"}}
+                src={'https://i.scdn.co/image/ab67616d0000b27325b055377757b3cdd6f26b78'}
+              />
               <b>The College Dropout</b><br />
               Kanye West <br />
               2004
@@ -44,9 +47,10 @@ function App() {
           </Grid>
           <Grid item xs={2}>
             <div>
-              <div class="myFlexedImage">
-              <img src={'https://i.scdn.co/image/ab67616d0000b27325b055377757b3cdd6f26b78'} />
-              </div>
+              <img 
+                style={{width:"100%", height:"100%"}}
+                src={'https://i.scdn.co/image/ab67616d0000b27325b055377757b3cdd6f26b78'}
+              />
               <b>The College Dropout</b><br />
               Kanye West <br />
               2004
@@ -54,9 +58,10 @@ function App() {
           </Grid>
           <Grid item xs={2}>
             <div>
-              <div class="myFlexedImage">
-              <img src={'https://i.scdn.co/image/ab67616d0000b27325b055377757b3cdd6f26b78'} />
-              </div>
+              <img 
+                style={{width:"100%", height:"100%"}}
+                src={'https://i.scdn.co/image/ab67616d0000b27325b055377757b3cdd6f26b78'}
+              />
               <b>The College Dropout</b><br />
               Kanye West <br />
               2004
@@ -64,9 +69,10 @@ function App() {
           </Grid>
           <Grid item xs={2}>
             <div>
-              <div class="myFlexedImage">
-              <img src={'https://i.scdn.co/image/ab67616d0000b27325b055377757b3cdd6f26b78'} />
-              </div>
+              <img 
+                style={{width:"100%", height:"100%"}}
+                src={'https://i.scdn.co/image/ab67616d0000b27325b055377757b3cdd6f26b78'}
+              />
               <b>The College Dropout</b><br />
               Kanye West <br />
               2004
@@ -74,9 +80,10 @@ function App() {
           </Grid>
           <Grid item xs={2}>
             <div>
-              <div class="myFlexedImage">
-              <img src={'https://i.scdn.co/image/ab67616d0000b27325b055377757b3cdd6f26b78'} />
-              </div>
+              <img 
+                style={{width:"100%", height:"100%"}}
+                src={'https://i.scdn.co/image/ab67616d0000b27325b055377757b3cdd6f26b78'}
+              />
               <b>The College Dropout</b><br />
               Kanye West <br />
               2004
@@ -84,9 +91,10 @@ function App() {
           </Grid>
           <Grid item xs={2}>
             <div>
-              <div class="myFlexedImage">
-              <img src={'https://i.scdn.co/image/ab67616d0000b27325b055377757b3cdd6f26b78'} />
-              </div>
+              <img 
+                style={{width:"100%", height:"100%"}}
+                src={'https://i.scdn.co/image/ab67616d0000b27325b055377757b3cdd6f26b78'}
+              />
               <b>The College Dropout</b><br />
               Kanye West <br />
               2004
@@ -94,9 +102,10 @@ function App() {
           </Grid>
           <Grid item xs={2}>
             <div>
-              <div class="myFlexedImage">
-              <img src={'https://i.scdn.co/image/ab67616d0000b27325b055377757b3cdd6f26b78'} />
-              </div>
+              <img 
+                style={{width:"100%", height:"100%"}}
+                src={'https://i.scdn.co/image/ab67616d0000b27325b055377757b3cdd6f26b78'}
+              />
               <b>The College Dropout</b><br />
               Kanye West <br />
               2004
@@ -104,9 +113,10 @@ function App() {
           </Grid>
           <Grid item xs={2}>
             <div>
-              <div class="myFlexedImage">
-              <img src={'https://i.scdn.co/image/ab67616d0000b27325b055377757b3cdd6f26b78'} />
-              </div>
+              <img 
+                style={{width:"100%", height:"100%"}}
+                src={'https://i.scdn.co/image/ab67616d0000b27325b055377757b3cdd6f26b78'}
+              />
               <b>The College Dropout</b><br />
               Kanye West <br />
               2004
@@ -114,21 +124,25 @@ function App() {
           </Grid>
           <Grid item xs={2}>
             <div>
-              <div class="myFlexedImage">
-              <img src={'https://i.scdn.co/image/ab67616d0000b27325b055377757b3cdd6f26b78'} />
-              </div>
+              <img 
+                style={{width:"100%", height:"100%"}}
+                src={'https://i.scdn.co/image/ab67616d0000b27325b055377757b3cdd6f26b78'}
+              />
               <b>The College Dropout</b><br />
               Kanye West <br />
               2004
             </div>
           </Grid>
           <Grid item xs={2}>
-            <Paper>
-              <img src={'https://i.scdn.co/image/ab67616d0000b27325b055377757b3cdd6f26b78'} />
+            <div>
+              <img 
+                style={{width:"100%", height:"100%"}}
+                src={'https://i.scdn.co/image/ab67616d0000b27325b055377757b3cdd6f26b78'}
+              />
               <b>The College Dropout</b><br />
               Kanye West <br />
               2004
-            </Paper>
+            </div>
           </Grid>
         </Grid>
       </header>
