@@ -1,7 +1,9 @@
+from django.contrib import admin
 from django.urls import path
-from .views import ArtistView, AlbumView
+from .views import albums_list, artists_list
 
 urlpatterns = [
-    path('artist/', ArtistView.as_view()),
-    path('album/', AlbumView.as_view()),
+    path('admin/', admin.site.urls),
+    path('artists/', artists_list ),
+    path('albums/', albums_list),
 ]
