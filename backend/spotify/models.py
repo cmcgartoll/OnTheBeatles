@@ -41,7 +41,7 @@ class Song(models.Model):
   spotify_id = models.CharField(max_length=22, db_index=True, unique=True, default="aaaaaaaaaaaaaaaaaaaaa")
   name = models.CharField(max_length=140)
   track_number = models.PositiveIntegerField(default=0)
-  album = models.ForeignKey(Album, on_delete=models.CASCADE)
+  album = models.ForeignKey(Album, related_name='songs', on_delete=models.CASCADE)
   artist = models.ManyToManyField(Artist)
   duration_ms = models.PositiveIntegerField(default=0)
   likes = models.PositiveIntegerField(default=0)
