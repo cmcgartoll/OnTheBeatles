@@ -11,8 +11,6 @@ import datetime
 Kanye West: 5K4W6rqBFWDnAN6FQUkS6x
 '''
 
-
-
 class Artist(models.Model):
   spotify_id = models.CharField(max_length=22, db_index=True, unique=True, default="aaaaaaaaaaaaaaaaaaaaa")
   name = models.CharField(max_length=140)
@@ -21,20 +19,33 @@ class Artist(models.Model):
   def _str_(self):
     return self.name
 
+  def lookup_create(id, name):
+    artist = Artist.objects.filter(spotify_id=id).first()
+    if artist is None:
+      artist = Artist.objects.create(spotify_id=id, name=name)
+    return artist
+
 class Album(models.Model):
   spotify_id = models.CharField(max_length=22, db_index=True, unique=True, default="aaaaaaaaaaaaaaaaaaaaa")
   title = models.CharField(max_length=140)
   artist = models.ManyToManyField(Artist)
   release_date = models.DateField()
   cover = models.URLField()
-  likes = models.PositiveIntegerField(default=0)
-  dislikes = models.PositiveIntegerField(default=0)
+  total_ratings = models.PositiveIntegerField(default=0)
+  average_rating = models.PositiveIntegerField(default=0)
   
-
   def _str_(self):
     return self.title
 
-# k = Artist(spotify_id="5K4W6rqBFWDnAN6FQUkS6x", name = "Kanye West")
-# k.save()
-# a = Album(spotify_id="4Uv86qWpGTxf7fU7lG5X6F", title="The College Dropout", artist=k, release_date=datetime.datetime(2004, 2, 10), cover="https://i.scdn.co/image/ab67616d0000b27325b055377757b3cdd6f26b78")
-# a.save()
+class Song(models.Model):
+  spotify_id = models.CharField(max_length=22, db_index=True, unique=True, default="aaaaaaaaaaaaaaaaaaaaa")
+  name = models.CharField(max_length=140)
+  track_number = models.PositiveIntegerField(default=0)
+  album = models.ForeignKey(Album, on_delete=models.CASCADE)
+  artist = models.ManyToManyField(Artist)
+  duration_ms = models.PositiveIntegerField(default=0)
+  likes = models.PositiveIntegerField(default=0)
+  dislikes = models.PositiveIntegerField(default=0)
+
+  def _str_(self):
+    return self.name
