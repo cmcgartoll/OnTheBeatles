@@ -42,7 +42,11 @@ INSTALLED_APPS = [
     'rest_framework',
     'spotify',
     'corsheaders',
+    'users',
+    'phonenumber_field',
 ]
+
+AUTH_USER_MODEL = 'users.CustomUser'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
