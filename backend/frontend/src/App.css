@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  background-color: #282c34;
+  background-color: white;
 }
 
 .App-logo {
@@ -14,15 +14,20 @@
   }
 }
 
-.App-header {
+.Nav-bar {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(8px + 2vmin);
-  color: white;
+  font-size: 40px;
+  color: #ABABAB;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom-style: solid;
+  border-bottom-color: #ABABAB;
+  border-bottom-width: 1px;
 }
 
 .App-grid {
@@ -31,9 +36,7 @@
   max-width:95vw;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(3px + 2vmin);
+  font-size: 5px;
   color: white;
   vertical-align: middle;
   margin-left: auto;
@@ -41,29 +44,74 @@
   padding-bottom: 50px;
 }
 
-.album-name {
-  font-weight: bold;
-  font-size: calc(3px + 2vmin);
-  color: black;
+.Grid-item {
+  display: flex;
+  flex-direction: row;
+}
+
+.Rating-bar {
+  display: flex;
+  flex-direction: column-reverse;
+  flex: 1;
+  margin-right: 15px;
+  padding-bottom: 40px;
+}
+
+.Album-box {
+
+}
+
+.Album-text {
+  flex: 5;
+}
+
+.Album-details {
+  display: flex;
+  flex-direction: row;
+}
+
+.Album-name {
+  /* font-weight: bold;*/
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  font-size: 15px; 
+  color: #ABABAB;
   padding: 0;
-  padding-bottom: 2px; 
+  padding-bottom: 1px; 
 }
 
-.artist-name {
-  font-size: calc(2px + 2vmin);
-  color: black;
-  font-style: italic;
-  opacity: 0.8;
-  padding-bottom: 2px; 
+.Album-date {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  font-size: 15px;
+  color: #ABABAB;
 }
 
-.album-date {
-  font-size: calc(2px + 2vmin);
-  color: black;
-  opacity: 0.8;
+.User-rating-box {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row-reverse;
+  flex: 1;
 }
 
-.like-button{
+
+
+
+
+.Artist-name {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  font-size: 15px;
+  color: #ABABAB;
+  /* font-style: italic; */
+  padding-bottom: 1px; 
+}
+
+.Like-button{
   background-color: green; /* Green */
   border: none;
   color: white;
@@ -73,7 +121,7 @@
   border-radius: 8px;
 }
 
-.dislike-button{
+.Dislike-button{
   background-color: red;
   border: none;
   color: white;

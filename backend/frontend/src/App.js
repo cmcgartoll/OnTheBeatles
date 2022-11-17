@@ -1,21 +1,31 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Header from "./components/Header";
 import './App.css';
-import Grid from '@material-ui/core/Grid';
-import Album from './components/Album'
 
-function App() {
+import Navbar from './components/Navbar/Navbar';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages';
+import Account from "./pages/account";
+import AlbumFocus from "./pages/albumFocus";
+
+export default function App() {
+  useEffect(() => {
+    document.title = 'YE OR NE';
+  });
   return (
     <div className="App">
-      <header className="App-header"> <Header/> </header>
-      <div className="App-grid">
-        <Grid container spacing={6} columnSpacing={{ xs: 6, sm: 2, md: 3 }}>
-          <Album/>
-        </Grid>
-      </div>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path='/' exact element={<Home/>} />
+          <Route path='/account' element={<Account/>} />
+          <Route path='/album/:albumId' element={<AlbumFocus/>} />
+        </Routes>
+      </Router>
+      {/* <div className="Nav-bar">
+        <header > <Header/> </header>
+      </div> */}
+      
     </div>
   );
 }
-
-
-export default App;
