@@ -14,14 +14,14 @@ export default function Home() {
   // console.log("sadfasd", albums[0]);
   return (
     <div className="App-grid">
-      <Grid container spacing={8} columnSpacing={{xs: 4}}>
+      <Grid container spacing={8} columnSpacing={{xs: 1}}>
         {albums.map(album => (
           <Grid item xs={3}>
             <div className="Grid-item">
               <div className="Rating-bar">
                 <Box
                   sx={{
-                    width: 35,
+                    width: 30,
                     height: 80,
                     backgroundColor: '#ABABAB',
                     '&:hover': {
