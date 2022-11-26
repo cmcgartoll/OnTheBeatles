@@ -13,7 +13,7 @@ export default function App() {
     document.title = 'YE OR NE';
   });
   return (
-    <div className="App">
+    <body className="App">
       <Router>
         <Navbar />
         <Routes>
@@ -26,6 +26,6 @@ export default function App() {
         <header > <Header/> </header>
       </div> */}
       
-    </div>
+    </body>
   );
 }

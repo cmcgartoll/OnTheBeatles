@@ -14,10 +14,10 @@ export default function Navbar() {
     <div className='nav-bar'>
       <ul className='nav-grid'>
         <li >
-          <StyledLink className='home-button' to="/" >Ye or Ne</StyledLink>
+          <StyledLink className='home-button' to="/" >YE OR NE</StyledLink>
         </li>
         <li>
-          <text className="login-button" onClick={toggle}>Login</text>
+          <text className="login-button" onClick={toggle}>LOGIN</text>
         </li>
       </ul>
       <LoginModal
