@@ -1,4 +1,3 @@
-from django.contrib import admin
 from django.urls import path
 from .views import albums_list, artists_list, album_detail
 
