@@ -1,23 +1,26 @@
 import React, {useState, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import axios from "axios";
-import { API_URL } from "../constants/index.js";
+import { API_URL } from "../../constants/index.js";
 import { Link } from 'react-router-dom';
 import "./albumFocus.css";
-import leftArrow from "../images/leftArrow.png";
-import rightArrow from "../images/rightArrow.png";
+import leftArrow from "../../images/leftArrow.png";
+import rightArrow from "../../images/rightArrow.png";
+import Track from './track.js';
   
 export default function AlbumFocus() {
     let {albumId} = useParams();
     const [album, setAlbum] = useState({});
     const [tracklist, setTracklist] = useState([]);
+
     useEffect(() => { 
         axios.get(API_URL + "album/" + albumId + "/").then((res) => { setAlbum(res.data); setTracklist(res.data.songs) }).catch(e => {console.log(e.toJSON())});
         // setTracklist(album.songs);
-        console.log(tracklist);
+        // console.log(tracklist);
     });
-    const albumBeforeID = (album.id != 1) ? album.id-1 : 12;
-    const albumAfterID = (album.id != 12) ? album.id+1 : 1;
+    const albumBeforeID = (album.id !== 1) ? album.id-1 : 12;
+    const albumAfterID = (album.id !== 12) ? album.id+1 : 1;
+
     
         
     //     // console.log(tracklist);
@@ -51,9 +54,9 @@ export default function AlbumFocus() {
                         src={album.cover}
                     />
                 </div>
-                <div className='tracklist'>
+                <div className='tracklist-wrapper'>
                     {tracklist.map((song, i) => (
-                        <p key={i} className='song'>{i+1}. {song}</p>
+                        <Track tracknumber={i} trackname={song} key={song} myKey={song}/>
                     ))}
                 </div>
             </div>

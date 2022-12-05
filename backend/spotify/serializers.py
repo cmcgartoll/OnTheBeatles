@@ -45,6 +45,7 @@ class AlbumNameSerializer(serializers.ModelSerializer):
 class AlbumDetailSerializer(serializers.ModelSerializer):
     artist = ArtistNameSerializer(read_only=True, many=True)
     songs = SongNameSerializer(many=True)
+
     class Meta:
         model = Album
         fields = ('id', 'spotify_id', 'title', 'artist', 'release_date', 'cover', 'total_ratings', 'average_rating', 'songs')

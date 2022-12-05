@@ -17,7 +17,7 @@ export default function Navbar() {
           <StyledLink className='home-button' to="/" >YE OR NE</StyledLink>
         </li>
         <li>
-          <p className="login-button" onClick={toggle}>LOGIN</p>
+          <p className="login-button" onClick={toggle}>Sign Up</p>
         </li>
       </ul>
       <LoginModal
