@@ -41,7 +41,9 @@ class SignUpSerializer(UserSerializer):
             user = CustomUser.objects.create_user(**validated_data)
         return user
 
-class LoginSerializer(serializers.ModelSerializer):
+class LoginSerializer(UserSerializer):
+    password = serializers.CharField(max_length=128, min_length=8, required=True)
+
     class Meta:
         model = CustomUser
         fields = ['username', 'password']
