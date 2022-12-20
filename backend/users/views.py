@@ -8,7 +8,6 @@ from .serializers import SignUpSerializer, LoginSerializer, UserSerializer, Toke
 class SignUpView(APIView):
     def post(self, request):
         serializer = SignUpSerializer(data=request.data)
-        print(serializer.is_valid())
         if serializer.is_valid():
             user = serializer.save()
             if user:
@@ -21,9 +20,6 @@ class SignUpView(APIView):
 
 class LoginView(APIView):
     def post(self, request):
-        # serializer = LoginSerializer(data=request.data)
-        
-        # if serializer.is_valid():
         username = request.data.get("username")
         password = request.data.get("password")
         if username is None or password is None:

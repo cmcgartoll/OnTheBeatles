@@ -1,4 +1,6 @@
 from django.db import models
+from users.models import CustomUser
+from statistics import mean
 
 '''
 5CnpZV3q5BcESefcB3WJmz,0FgZKfoU2Br5sHOfvZKTI9,6pwuKxMUkNg673KETsXPUV,2Ek1q2haOnxVqhvVKqMvJe,7gsWAHLeT0w7es6FofOXk1,20r762YmB5HeofjMCiPMLv,7D2NdGvBHIavgLhmcwhluK,7mCeLbChyegbRwwKK5shJs,3WFTGIO6E3Xh4paEOBY9OU,4SZko61aMnmgvNhfhgTuD3,5ll74bqtkcXlKE7wwkMq4g,4Uv86qWpGTxf7fU7lG5X6F
@@ -26,8 +28,16 @@ class Album(models.Model):
   artist = models.ManyToManyField(Artist)
   release_date = models.DateField()
   cover = models.URLField()
-  total_ratings = models.PositiveIntegerField(default=0)
-  average_rating = models.PositiveIntegerField(default=0)
+  user_ratings = models.ManyToManyField(CustomUser, through='AlbumRating', related_name='album_ratings')
+
+  @property
+  def total_ratings(self):
+    return self.user_ratings.all().count()
+  
+  @property
+  def average_rating(self):
+    all_ratings = list(self.user_ratings.all().values_list('rating', flat=True))
+    return mean(all_ratings)
   
   def _str_(self):
     return self.title
@@ -44,3 +54,8 @@ class Song(models.Model):
 
   def _str_(self):
     return self.name
+  
+class AlbumRating(models.Model):
+  album = models.ForeignKey(Album, on_delete=models.CASCADE)
+  user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+  rating = models.PositiveIntegerField(default=0)

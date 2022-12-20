@@ -38,5 +38,8 @@ class CustomUser(AbstractUser):
 
     objects = CustomUserManager()
 
+    def get_album_rating(self, album_id):
+        return self.album_ratings.filter(album__id=album_id)
+
     def __str__(self):
         return self.username
