@@ -17,7 +17,7 @@ export default function AlbumFocus() {
         axios.get(API_URL + "album/" + albumId + "/").then((res) => { setAlbum(res.data); setTracklist(res.data.songs) }).catch(e => {console.log(e.toJSON())});
         // setTracklist(album.songs);
         // console.log(tracklist);
-    });
+    }, [album]);
     const albumBeforeID = (album.id !== 1) ? album.id-1 : 12;
     const albumAfterID = (album.id !== 12) ? album.id+1 : 1;
 

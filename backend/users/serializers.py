@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import CustomUser
 from django.core.exceptions import ObjectDoesNotExist
+from rest_framework.authtoken.models import Token
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -47,3 +48,9 @@ class LoginSerializer(UserSerializer):
     class Meta:
         model = CustomUser
         fields = ['username', 'password']
+
+class TokenSerializer(serializers.ModelSerializer):
+    key = serializers.CharField(source='Authorization')
+    class Meta:
+        model = Token 
+        fields = ['key']

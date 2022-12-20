@@ -3,7 +3,7 @@ from rest_framework import status
 from rest_framework.authtoken.models import Token
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .serializers import SignUpSerializer, LoginSerializer, UserSerializer
+from .serializers import SignUpSerializer, LoginSerializer, UserSerializer, TokenSerializer
 
 class SignUpView(APIView):
     def post(self, request):
@@ -21,7 +21,6 @@ class SignUpView(APIView):
 
 class LoginView(APIView):
     def post(self, request):
-        print(request.data)
         # serializer = LoginSerializer(data=request.data)
         
         # if serializer.is_valid():
@@ -39,4 +38,28 @@ class LoginView(APIView):
             'token': token.key}, 
             status=status.HTTP_200_OK)
         
+class TokenView(APIView):
+    def get(self, request):
+        key = request.headers.get('Authorization')
+        if key is None:
+            return Response({'error': 'Authentication is null'}, status=status.HTTP_400_BAD_REQUEST)
+        token = Token.objects.get(key=key)
+        user = token.user
+        return Response({
+            'user': UserSerializer(user).data},
+            status=status.HTTP_200_OK)
+
+
+
+        # serializer = TokenSerializer(data=request.headers)
+        # if serializer.is_valid():
+        #     key = serializer.validated_data['key']
+        #     print(key)
+        #     token = Token.objects.get(key=key)
+        #     user = token.user
+        #     return Response({
+        #         'user': UserSerializer(user).data},
+        #         status=status.HTTP_200_OK)
+        # return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
         

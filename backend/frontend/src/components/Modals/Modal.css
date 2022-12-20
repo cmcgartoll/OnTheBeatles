@@ -35,16 +35,18 @@
     max-width: 500px;
     overflow-y: hidden;
     padding: 2rem;
+    font-size: 17px;
   }
   
   .modal-header {
     display: flex;
-    justify-content: flex-end;
+    flex-direction: row-reverse;
     margin-bottom: 10px;
-    /* font-size: 15px; */
+    /* flex: 1 auto 1;  */
   }
-  
-  .modal-close-button {
+
+  .modal-action-button {
+    /* flex: 1; */
     font-size: 1.4rem;
     font-weight: 700;
     line-height: 1;
@@ -53,6 +55,14 @@
     cursor: pointer;
     border: none;
   }
+  
+   .modal-back-button {
+    margin-right: auto;
+  } 
+  
+  .modal-close-button {
+    margin-left: auto;
+  } 
 
   .input-form {
     display: flex;
@@ -65,21 +75,20 @@
     flex-direction: column;
     align-items: center;
     text-transform: uppercase;
-    font-size: 20px;
+    /* font-size: 20px; */
   }
 
   .text-input-box {
-    font-size: 15px;
     opacity: 1;
     text-align: center;
     font-family: "Light";
-    font-size: 20px;
+    font-size: 16px;
     color:#ABABAB;
     width: 100%;
-    height: 30px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 12px 20px;
+    height: 25px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 0px 12px;
     box-sizing: border-box;
     border: 2px solid #ABABAB;
     border-radius: 2px;
@@ -94,21 +103,35 @@
   }
 
   .submit-button {
-    font-size: 15px;
+    /* font-size: 14px; */
+    /* font-weight: bold; */
     opacity: 1;
     text-align: center;
     font-family: "Light";
-    font-size: 20px;
-    color:#ABABAB;
+    color:white;
     width: 30%;
-    height: 30px;
+    height: 20px;
     margin-top: 10px;
     margin-bottom: 10px;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 7px;
+    padding-right: 7px;
     border: 2px solid #ABABAB;
     border-radius: 2px;
-    background-color: white;
+    background-color: #ABABAB;
     resize: none;
     text-transform: uppercase;
+  }
+
+  .sign-up-text {
+    padding-top: 10px;
+    text-align: right;
+    font-size: 13px
+  }
+  .sign-up-link {
+    flex: display;
+    cursor: pointer;
+  }
+
+  .sign-up-link:hover {
+    text-decoration: underline;
   }

@@ -4,11 +4,14 @@ import {
   StyledLink,
 } from './NavbarElements';
 import useModal from "../../hooks/useModal";
-import LoginModal from "../Modals/LoginModal";
+import SignUpModal from "../Modals/SignUpModal";
 import './Navbar.css'
 import '../Modals/Modal.css'
+import { useContext } from 'react';
+import AuthContext from '../Context/AuthContext';
 
 export default function Navbar() {
+  const { user, logoutUser } = useContext(AuthContext);
   const {isShowing, toggle} = useModal();
   return (
     <div className='nav-bar'>
@@ -17,10 +20,14 @@ export default function Navbar() {
           <StyledLink className='home-button' to="/" >YE OR NE</StyledLink>
         </li>
         <li>
-          <p className="login-button" onClick={toggle}>Sign Up</p>
+          {user ? (
+            <p className="login-button" onClick={logoutUser}>Logout</p>
+          ) : (
+            <p className="login-button" onClick={toggle}>Login</p>
+          )}
         </li>
       </ul>
-      <LoginModal
+      <SignUpModal
         isShowing={isShowing}
         hide={toggle}
       />
