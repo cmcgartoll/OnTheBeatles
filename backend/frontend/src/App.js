@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages';
 import Account from "./pages/account";
 import AlbumFocus from "./pages//albumFocus/albumFocus";
+import { AuthProvider } from "./components/Context/AuthContext";
 
 export default function App() {
   useEffect(() => {
@@ -13,14 +14,16 @@ export default function App() {
   });
   return (
     <div className="App">
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route path='/' exact element={<Home/>} />
-          <Route path='/account' element={<Account/>} />
-          <Route path='/album/:albumId' element={<AlbumFocus/>} />
-        </Routes>
-      </Router>
+        <Router>
+          <AuthProvider>
+            <Navbar />
+            <Routes>
+              <Route path='/' exact element={<Home/>} />
+              <Route path='/account' element={<Account/>} />
+              <Route path='/album/:albumId' element={<AlbumFocus/>} />
+            </Routes>
+          </AuthProvider>
+        </Router>
       {/* <div className="Nav-bar">
         <header > <Header/> </header>
       </div> */}

@@ -7,10 +7,10 @@ import { Link } from 'react-router-dom';
   
 export default function Home() {
   const [albums, setAlbums] = useState([]);
-
+  
   useEffect(() => {
     axios.get(API_URL + "albums/").then((res) => setAlbums(res.data));
-  });
+  }, [albums]);
   // console.log("sadfasd", albums[0]);
   return (
     <div className="App-grid">
