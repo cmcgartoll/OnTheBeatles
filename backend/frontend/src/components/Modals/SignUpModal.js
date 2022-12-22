@@ -4,9 +4,10 @@ import { API_URL } from '../../constants';
 import axios from "axios";
 import AuthContext from '../Context/AuthContext';
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useAsyncError, useNavigate } from 'react-router-dom';
 
 const SignUpModal = ({ isShowing, hide }) => { 
+  // const navigate = useNavigate();
   const {loginUser, signUpUser } = useContext(AuthContext);
   const [isLogin, setIsLogin] = useState(false);
 
@@ -19,30 +20,17 @@ const SignUpModal = ({ isShowing, hide }) => {
 
   let handleSignUp = async (e) => {
     e.preventDefault();
-    axios.post(API_URL + "signup/", {
-      first_name: firstName,
-      last_name: lastName,
-      username: username,
-      email: email,
-      phone: phone,
-      password: password
-    })
-    .then(console.log('sign up modal'))
-    .catch((error) => console.log(error));
-    // signUpUser(firstName, lastName, username, email, phone, password);
-      
+    signUpUser(firstName, lastName, username, email, phone, password);
+    hide();
+    // navigate(window.location.pathname, {replace=true});
   };
 
   let handleLogin = async (e) => {
     e.preventDefault();
     loginUser(username, password);
-    // axios.post(API_URL + "login/", {
-    //   username: username,
-    //   password: password
-    // })
-    // .then(console.log('login modal'))
-    // .catch((error) => console.log(error));
-      
+    
+    hide();
+    // navigate(window.location.pathname);
   };
 
   if (isShowing) {

@@ -1,6 +1,7 @@
 from django.db import models
 from users.models import CustomUser
 from statistics import mean
+from django.db.models import Avg
 
 '''
 5CnpZV3q5BcESefcB3WJmz,0FgZKfoU2Br5sHOfvZKTI9,6pwuKxMUkNg673KETsXPUV,2Ek1q2haOnxVqhvVKqMvJe,7gsWAHLeT0w7es6FofOXk1,20r762YmB5HeofjMCiPMLv,7D2NdGvBHIavgLhmcwhluK,7mCeLbChyegbRwwKK5shJs,3WFTGIO6E3Xh4paEOBY9OU,4SZko61aMnmgvNhfhgTuD3,5ll74bqtkcXlKE7wwkMq4g,4Uv86qWpGTxf7fU7lG5X6F
@@ -36,8 +37,12 @@ class Album(models.Model):
   
   @property
   def average_rating(self):
-    all_ratings = list(self.user_ratings.all().values_list('rating', flat=True))
-    return mean(all_ratings)
+    # return 5
+    return AlbumRating.objects.filter(album=self).aggregate(Avg('rating'))
+    # all_ratings = AlbumRating.objects.filter(album=self).values_list('rating', flat=True)
+    # return mean(list(all_ratings))
+
+
   
   def _str_(self):
     return self.title
@@ -49,8 +54,15 @@ class Song(models.Model):
   album = models.ForeignKey(Album, related_name='songs', on_delete=models.CASCADE)
   artist = models.ManyToManyField(Artist)
   duration_ms = models.PositiveIntegerField(default=0)
-  likes = models.PositiveIntegerField(default=0)
-  dislikes = models.PositiveIntegerField(default=0)
+  user_liked = models.ManyToManyField(CustomUser, through='SongRating', related_name='liked_songs')
+
+  @property
+  def likes(self):
+    return SongRating.objects.filter(liked=True).count()
+
+  @property
+  def dislikes(self):
+    return SongRating.objects.filter(liked=False).count()
 
   def _str_(self):
     return self.name
@@ -59,3 +71,8 @@ class AlbumRating(models.Model):
   album = models.ForeignKey(Album, on_delete=models.CASCADE)
   user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
   rating = models.PositiveIntegerField(default=0)
+
+class SongRating(models.Model):
+  song = models.ForeignKey(Song, on_delete=models.CASCADE)
+  user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+  liked = models.BooleanField()

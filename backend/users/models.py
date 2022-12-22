@@ -4,6 +4,7 @@ from django.contrib.auth.validators import ASCIIUsernameValidator
 from .fields import CaseInsensitiveCharField
 from .managers import CustomUserManager
 from phonenumber_field.modelfields import PhoneNumberField
+from rest_framework.authtoken.models import Token
 
 class CustomUser(AbstractUser):
     # first_name, last_name, date_joined already included
@@ -40,6 +41,10 @@ class CustomUser(AbstractUser):
 
     def get_album_rating(self, album_id):
         return self.album_ratings.filter(album__id=album_id)
+
+    @property
+    def token_key(self):
+        return Token.objects.get(user=self).first().key
 
     def __str__(self):
         return self.username

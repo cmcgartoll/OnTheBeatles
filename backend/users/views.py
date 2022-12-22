@@ -3,6 +3,7 @@ from rest_framework import status
 from rest_framework.authtoken.models import Token
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from .models import CustomUser
 from .serializers import SignUpSerializer, LoginSerializer, UserSerializer, TokenSerializer
 
 class SignUpView(APIView):
@@ -13,7 +14,7 @@ class SignUpView(APIView):
             if user:
                 token, _ = Token.objects.get_or_create(user=user)
                 return Response({
-                    'user': UserSerializer(user, context=self.get_serializer_context()).data, 
+                    'user': UserSerializer(user).data, 
                     'token': token.key}, 
                     status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -39,8 +40,7 @@ class TokenView(APIView):
         key = request.headers.get('Authorization')
         if key is None:
             return Response({'error': 'Authentication is null'}, status=status.HTTP_400_BAD_REQUEST)
-        token = Token.objects.get(key=key)
-        user = token.user
+        user = CustomUser.objects.get_user_from_token(key=key)
         return Response({
             'user': UserSerializer(user).data},
             status=status.HTTP_200_OK)

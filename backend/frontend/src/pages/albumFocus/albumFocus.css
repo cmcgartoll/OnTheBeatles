@@ -45,13 +45,13 @@
     font-family: 'Light';
     color: #ABABAB;
     background-color: transparent;
-    opacity: 0.5;
+    opacity: 0.3;
 }
 
 .like-button-active {
     border: none;
     font-family: 'Light';
-    color: lightgreen;
+    color: #1BC91B;
     background-color: transparent;
     /* opacity: 0.5; */
 }
@@ -59,7 +59,7 @@
 .dislike-button-active {
     border: none;
     font-family: 'Light';
-    color: lightsalmon;
+    color: rgb(245, 92, 92);
     background-color: transparent;
     /* opacity: 0.5; */
 }

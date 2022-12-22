@@ -1,19 +1,20 @@
-import React, { createContext, useState, useEffect } from "react";
-import jwt_decode from "jwt-decode";
-import { useNavigate } from "react-router-dom";
+import React, { createContext, useState, useEffect, } from "react";
 import axios from "axios";
 import { API_URL } from '../../constants';
-import { getBottomNavigationActionUtilityClass } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
 
 export default AuthContext;
 
 export const AuthProvider = ({ children }) => {
+  const navigate = useNavigate();
   const [authToken, setAuthToken] = useState(
     localStorage.getItem("authToken") || null
   );
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState(null);
+
+  const [loading,setLoading] = useState(true);
 
   const loginUser = async (username, password) => {
     try {
@@ -23,19 +24,12 @@ export const AuthProvider = ({ children }) => {
       }, {headers: {
           "Content-Type": "application/json"
       }})
-      setAuthToken(response.data.token);
       setUser(response.data.user);
-      console.log(authToken);
       localStorage.setItem("authToken", response.data.token);
+      window.location.reload('false');
     } catch (error) {
       console.log(error)
     }
-    // .then(response => 
-    //   {setAuthToken(response.data.token);
-    //   setUser(response.data.user);
-    //   console.log(authToken);
-    //   localStorage.setItem("authToken", authToken);}
-    // ).catch((error) => console.log(error));
   };
   
   const signUpUser = async (firstName, lastName, username, email, phone, password) => {
@@ -48,22 +42,19 @@ export const AuthProvider = ({ children }) => {
         phone: phone,
         password: password
       })
-      setAuthToken(response.data.token);
       setUser(response.data.user);
-      console.log(authToken);
       localStorage.setItem("authToken", response.data.token);
+      window.location.reload('false');
     } catch (error) {
       console.log(error);
     }
-    // .then(response => 
-    //   {}
-    // ).catch((error) => console.log(error));
   };
 
   const logoutUser = () => {
     setAuthToken(null);
     setUser(null);
     localStorage.removeItem("authToken");
+    window.location.reload('false');
   };
 
   const contextData = {
@@ -73,25 +64,24 @@ export const AuthProvider = ({ children }) => {
     setAuthToken,
     signUpUser,
     loginUser,
-    logoutUser
+    logoutUser,
+    setLoading
   };
 
   useEffect(() => {
-    console.log(authToken);
-    console.log(user);
+    console.log("Loading");
     if (authToken) {
       axios.get(API_URL + "token/", 
         {headers: {
           "Authorization": authToken
       }}).then(response => {
         setUser(response.data.user);
-        console.log('Here');
       }).catch((error) => {
         alert("Something went wrong! AHHHH");
       })
     }
-    // setLoading(false);
-  }, [authToken]);
+    setLoading(false);
+  }, [authToken, loading]);
 
   return (
     <AuthContext.Provider value={contextData}>

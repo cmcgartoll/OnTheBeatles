@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 // import { Link } from 'react-router-dom';
 import {
   StyledLink,
@@ -13,6 +13,7 @@ import AuthContext from '../Context/AuthContext';
 export default function Navbar() {
   const { user, logoutUser } = useContext(AuthContext);
   const {isShowing, toggle} = useModal();
+  
   return (
     <div className='nav-bar'>
       <ul className='nav-grid'>

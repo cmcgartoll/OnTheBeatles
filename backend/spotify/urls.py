@@ -1,8 +1,10 @@
 from django.urls import path
-from .views import albums_list, artists_list, album_detail
+from .views import ArtistListView, AlbumDetailView, AlbumsListView, AlbumLikesView, AlbumRatingView
 
 urlpatterns = [
-    path('artists/', artists_list ),
-    path('albums/', albums_list),
-    path('album/<int:id>/', album_detail),
+    path('artists/', ArtistListView.as_view()),
+    path('albums/', AlbumsListView.as_view()),
+    path('album/<int:id>/', AlbumDetailView.as_view()),
+    path('album-likes/<int:id>/', AlbumLikesView.as_view()),
+    path('album-rating/<int:id>/', AlbumRatingView.as_view())
 ]

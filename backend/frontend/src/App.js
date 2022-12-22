@@ -20,7 +20,7 @@ export default function App() {
             <Routes>
               <Route path='/' exact element={<Home/>} />
               <Route path='/account' element={<Account/>} />
-              <Route path='/album/:albumId' element={<AlbumFocus/>} />
+              <Route path='/album/:albumId' element={<AlbumFocus/>}/>
             </Routes>
           </AuthProvider>
         </Router>

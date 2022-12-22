@@ -1,46 +1,60 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {useParams} from 'react-router-dom';
 import axios from "axios";
-import { API_URL } from "../../constants/index.js";
-import { Link } from 'react-router-dom';
+import { API_URL, TOT_ALBUMS } from "../../constants/index.js";
+import { useNavigate, Link } from 'react-router-dom';
 import "./albumFocus.css";
 import leftArrow from "../../images/leftArrow.png";
 import rightArrow from "../../images/rightArrow.png";
 import Track from './track.js';
+import AuthContext from '../../components/Context/AuthContext.js';
   
 export default function AlbumFocus() {
+    const navigate = useNavigate();
+    const {user, setLoading, authToken} = useContext(AuthContext);
     let {albumId} = useParams();
     const [album, setAlbum] = useState({});
-    const [tracklist, setTracklist] = useState([]);
+    const [tracklist, setTracklist] = useState({});
 
     useEffect(() => { 
-        axios.get(API_URL + "album/" + albumId + "/").then((res) => { setAlbum(res.data); setTracklist(res.data.songs) }).catch(e => {console.log(e.toJSON())});
-        // setTracklist(album.songs);
-        // console.log(tracklist);
-    }, [album]);
-    const albumBeforeID = (album.id !== 1) ? album.id-1 : 12;
-    const albumAfterID = (album.id !== 12) ? album.id+1 : 1;
+        setLoading(true);
+        // console.log(albumId);
+        mountAlbumFocus();
+    }, [albumId]);
 
+    useEffect(() => {
+        // if (authToken == localStorage.getItem('authToken')) {
+            // window.location.
+        // }
+    }, [authToken]);
+
+    const mountAlbumFocus = async () => {
+        await axios.get(API_URL + "album/" + albumId + "/", 
+            {headers: {
+                "Authorization": localStorage.getItem('authToken')
+        }})
+        .then((res) => { 
+            console.log(res.data);
+            setAlbum(res.data); setTracklist(Object.fromEntries(res.data.songs.map(song => [song.name, song.rating]))) 
+        })
+        .catch(e => {
+            console.log(e.toJSON())
+        });
+    }
+
+    useEffect(() => {
+        console.log('CHANGE');
+        console.log(tracklist);
+    }, [tracklist]);
     
-        
-    //     // console.log(tracklist);
-    //     // var tracklistArr = [];
-    //     // for (var song in tracklist) {
-    //     //     console.log(typeof song);
-    //     //     tracklistArr.push(tracklist[song]);
-    //     // }
-    //     // console.log(tracklistArr[0]);
-    //     // for (const song in tracklist) { 
-    //     //     JSONObject jsonObject = (JSONObject)song;
-    //     //     System.out.println(jsonObject.toString()); 
-    //     // }
-    // });
+    const albumBeforeID = (album.id !== 1) ? album.id-1 : TOT_ALBUMS;
+    const albumAfterID = (album.id !== TOT_ALBUMS) ? album.id+1 : 1;
      
     return (
         <div className='app'>
             <div className='arrow'> 
-                <Link to={`../album/${albumBeforeID}`} path="relative" onClick={(e) => console.log(album.id)}>
-                    <img
+                <Link to={`../album/${albumBeforeID}`} path="relative">
+                    <img 
                         style={{height:"80px"}}
                         src={leftArrow}
                     />
@@ -55,13 +69,14 @@ export default function AlbumFocus() {
                     />
                 </div>
                 <div className='tracklist-wrapper'>
-                    {tracklist.map((song, i) => (
-                        <Track tracknumber={i} trackname={song} key={song} myKey={song}/>
+                    {Object.entries(tracklist).map(([song, rating], i) => (
+                        // console.log(`${song} ${rating}`)
+                        <Track tracknumber={i} trackname={song} rating={rating} albumId={albumId} key={song} myKey={song} />
                     ))}
                 </div>
             </div>
             <div className='arrow'> 
-                <Link to={`../album/${albumAfterID}`} path="relative" onClick={(e) => console.log(album.id)}>
+                <Link to={`../album/${albumAfterID}`} path="relative">
                     <img
                         style={{height:"80px"}}
                         src={rightArrow}
