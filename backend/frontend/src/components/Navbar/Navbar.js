@@ -18,7 +18,7 @@ export default function Navbar() {
     <div className='nav-bar'>
       <ul className='nav-grid'>
         <li >
-          <StyledLink className='home-button' to="/" >YE OR NE</StyledLink>
+          <StyledLink className='home-button' to="/" >ON THE BEAT</StyledLink>
         </li>
         <li>
           {user ? (

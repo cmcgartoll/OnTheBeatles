@@ -7,7 +7,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('spotify', '0003_add_songs'),
+        ('spotify', '0002_updates'),
     ]
 
     operations = [

@@ -58,7 +58,7 @@ export default function Home() {
                 </Link>
                 <div className="Album-details">
                   <div className="Album-text">
-                    <div className="Album-name">{album.title.toUpperCase()}</div>
+                    <div className="Album-name">{album.title == 'My Beautiful Dark Twisted Fantasy' ? 'MBDTF' : album.title.toUpperCase()}</div>
                     {/* <body className="Artist-name">{album.artist.join(", ").toUpperCase()}</body>  */}
                     <div className="Album-date">{album.release_date.substring(0,4)}</div>
                     {/* <button className="Like-button">Like</button><button className="Dislike-button">Dislike</button> */}
@@ -78,6 +78,7 @@ export default function Home() {
                       {user ? 
                       <form className='input-form' onSubmit={(e) => e.preventDefault()}> 
                         <select className = 'album-rating-dropdown' value={album.rating ? album.rating : ""} onChange={(e) => handleRatingChange(album.id, e.target.value)}>
+                          
                           <option value = {0}>_</option>
                           <option value = {1}>1</option>
                           <option value = {2}>2</option>

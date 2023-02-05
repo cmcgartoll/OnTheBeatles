@@ -10,7 +10,7 @@ import { AuthProvider } from "./components/Context/AuthContext";
 
 export default function App() {
   useEffect(() => {
-    document.title = 'YE OR NE';
+    document.title = 'ON THE BEAT';
   });
   return (
     <div className="App">

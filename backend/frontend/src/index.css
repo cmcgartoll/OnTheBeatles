@@ -2,6 +2,11 @@
   font-family: "Light";
   src: local("YeezyFont"), url(./font/YeezyFont.ttf) format("truetype");
 }
+/* @font-face {
+  font-family: "Light";
+  src: local("TayFont"), url(./font/TayFont.ttf) format("truetype");
+} */
+
 body {
   font-family: "Light";
   color:#ABABAB;

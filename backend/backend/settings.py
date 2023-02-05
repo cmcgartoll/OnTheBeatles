@@ -96,7 +96,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {  
     'default': {  
         'ENGINE': 'django.db.backends.mysql',  
-        'NAME': 'my_database',  
+        'NAME': 'beatles_db',  
         'USER': 'root',  
         'PASSWORD': 'admin123',  
         'HOST': '127.0.0.1',  
@@ -104,7 +104,18 @@ DATABASES = {
         'OPTIONS': {  
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"  
         }  
-    }  
+    },
+    # 'new': {  
+    #     'ENGINE': 'django.db.backends.mysql',  
+    #     'NAME': 'beatles',  
+    #     'USER': 'root',  
+    #     'PASSWORD': 'admin123',  
+    #     'HOST': '127.0.0.1',  
+    #     'PORT': '3306',  
+    #     'OPTIONS': {  
+    #         'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"  
+    #     }  
+    # }    
 }  
 
 
