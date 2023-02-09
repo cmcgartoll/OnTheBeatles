@@ -8,3 +8,15 @@ backend/frontend/package-lock.json
 backend/frontend/package-lock.json
 backend/frontend/package-lock.json
 *.pyc
+backend/.env
+*.log
+
+*.pot
+
+*.pyc
+
+*/*/*/__pycache__/
+
+*/*/__pycache__/
+
+*/__pycache__/
