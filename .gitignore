@@ -24,3 +24,6 @@ backend/backend/.env
 *.pyc
 *.pyc
 *.pyc
+backend/frontend/package.json
+backend/frontend/package-lock.json
+*.json
