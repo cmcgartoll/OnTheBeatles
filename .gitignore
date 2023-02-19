@@ -27,3 +27,5 @@ backend/backend/.env
 backend/frontend/package.json
 backend/frontend/package-lock.json
 *.json
+aws-elastic-beanstalk-cli-setup/
+backend/eb-virt/

@@ -3,7 +3,6 @@ certifi==2022.9.24
 cffi==1.15.1
 charset-normalizer==2.1.1
 cryptography==38.0.4
-Django==4.1.2
 django-case-insensitive-field==1.0.7
 django-cors-headers==3.13.0
 django-phonenumber-field==7.0.0
