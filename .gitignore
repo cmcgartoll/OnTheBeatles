@@ -29,4 +29,6 @@ backend/frontend/package-lock.json
 *.json
 aws-elastic-beanstalk-cli-setup/
 backend/eb-virt/
-backend/.ebignore
+backend/.DS_Store
+.DS_Store
+.DS_Store
