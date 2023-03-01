@@ -27,7 +27,9 @@
     "build": "react-scripts --openssl-legacy-provider build",
     "start": "react-scripts --openssl-legacy-provider start",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "aws s3 sync build/ s3://www.onthebeatles.com",
+    "prod": "npm build && npm deploy"
   },
   "eslintConfig": {
     "extends": [

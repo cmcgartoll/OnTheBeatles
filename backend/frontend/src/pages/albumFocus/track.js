@@ -9,9 +9,8 @@ export default function Track(props) {
     
     const {authToken} = useContext(AuthContext);
     // console.log(`${rating} ${props.trackname}`);
-    const [likeActive, setLikeActive] = useState(rating != null && rating == true ? true : false); 
-    const [dislikeActive, setDislikeActive] = useState(rating != null && rating == false ? true : false); 
-    let myKey = props.myKey;
+    const [likeActive, setLikeActive] = useState(rating != null && rating === true ? true : false); 
+    const [dislikeActive, setDislikeActive] = useState(rating != null && rating === false ? true : false); 
     let i = props.tracknumber;
     let song = props.trackname;
     let albumId = props.albumId;
@@ -21,7 +20,7 @@ export default function Track(props) {
 
 
     useEffect(() => {
-        console.log(rating);
+        // console.log(rating);
         if (isFirstRenderLike.current) {
             isFirstRenderLike.current = false;
             return;

@@ -1,13 +1,9 @@
 import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
-import { API_URL } from '../../constants';
-import axios from "axios";
 import AuthContext from '../Context/AuthContext';
 import { useContext } from 'react';
-import { Link, useAsyncError, useNavigate } from 'react-router-dom';
 
 const SignUpModal = ({ isShowing, hide }) => { 
-  // const navigate = useNavigate();
   const {loginUser, signUpUser } = useContext(AuthContext);
   const [isLogin, setIsLogin] = useState(false);
 

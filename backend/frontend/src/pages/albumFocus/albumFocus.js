@@ -2,7 +2,7 @@ import React, {useState, useEffect, useContext} from 'react';
 import {useParams} from 'react-router-dom';
 import axios from "axios";
 import { API_URL, TOT_ALBUMS } from "../../constants/index.js";
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import "./albumFocus.css";
 import leftArrow from "../../images/leftArrow.png";
 import rightArrow from "../../images/rightArrow.png";
@@ -10,8 +10,8 @@ import Track from './track.js';
 import AuthContext from '../../components/Context/AuthContext.js';
   
 export default function AlbumFocus() {
-    const navigate = useNavigate();
-    const {user, setLoading, authToken} = useContext(AuthContext);
+    // const navigate = useNavigate();
+    const {setLoading, authToken} = useContext(AuthContext);
     let {albumId} = useParams();
     const [album, setAlbum] = useState({});
     const [tracklist, setTracklist] = useState({});
@@ -34,7 +34,7 @@ export default function AlbumFocus() {
                 "Authorization": localStorage.getItem('authToken')
         }})
         .then((res) => { 
-            console.log(res.data);
+            // console.log(res.data);
             setAlbum(res.data); setTracklist(Object.fromEntries(res.data.songs.map(song => [song.name, song.rating]))) 
         })
         .catch(e => {
@@ -43,8 +43,8 @@ export default function AlbumFocus() {
     }
 
     useEffect(() => {
-        console.log('CHANGE');
-        console.log(tracklist);
+        // console.log('CHANGE');
+        // console.log(tracklist);
     }, [tracklist]);
     
     const albumBeforeID = (album.id !== 1) ? album.id-1 : TOT_ALBUMS;
@@ -57,6 +57,7 @@ export default function AlbumFocus() {
                     <img 
                         style={{height:"80px"}}
                         src={leftArrow}
+                        alt={'Left'}
                     />
                 </Link>
             </div>
@@ -66,6 +67,7 @@ export default function AlbumFocus() {
                     <img
                         style={{width:"350px"}}
                         src={album.cover}
+                        alt={album.title}
                     />
                 </div>
                 <div className='tracklist-wrapper'>
@@ -80,6 +82,7 @@ export default function AlbumFocus() {
                     <img
                         style={{height:"80px"}}
                         src={rightArrow}
+                        alt={'Right'}
                     />   
                 </Link>
             </div>

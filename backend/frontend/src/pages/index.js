@@ -8,7 +8,7 @@ import AuthContext from "../components/Context/AuthContext.js";
 import "../App.css";
   
 export default function Home() {
-  const {user, setLoading, authToken} = useContext(AuthContext);
+  const {user, authToken} = useContext(AuthContext);
   const [albums, setAlbums] = useState([]);
   
   useEffect(() => {
@@ -16,23 +16,34 @@ export default function Home() {
     {headers: {
       "Authorization": localStorage.getItem('authToken')
   }}).then((res) => setAlbums(res.data));
+  }, [authToken]);
+
+  useEffect(() => {
+    // console.log(albums);
   }, [albums]);
-  // console.log("sadfasd", albums[0]);
 
   const handleRatingChange = (albumId, rating) => {
-    if (rating === 0) {
-      rating = null;
-    }
-    axios.post(API_URL + "album-rating/" + albumId + "/", {
-      rating: rating,
-  },{headers: {"Authorization": authToken}});
+  if (rating === 0) {
+    rating = null;
   }
+  axios.post(API_URL + "album-rating/" + albumId + "/", {
+    rating: rating,
+  },{headers: {"Authorization": authToken}}).then((response) => {
+    axios.get(API_URL + "albums/", 
+    {headers: {
+      "Authorization": localStorage.getItem('authToken')
+    }}).then((res) => setAlbums(res.data));
+  }).catch((error) => {
+    console.error(error);
+  });
+  // console.log(albums)
+}
 
   return (
     <div className="App-grid">
       <Grid container spacing={8} columnSpacing={{xs: 1}}>
         {albums.map(album => (
-          <Grid item xs={3}>
+          <Grid item xs={12} sm={6} md={4} lg={3} key={album.id}>
             <div className="Grid-item">
               <div className="Rating-bar">
                 <Box className="average-album-rating-wrapper"
@@ -40,10 +51,6 @@ export default function Home() {
                     width: 30,
                     height: ((album.average_rating.rating__avg ? album.average_rating.rating__avg : 5)/10).toFixed(1),
                     backgroundColor: '#ABABAB',
-                    // '&:hover': {
-                    //   backgroundColor: '#6E6E6E',
-                    //   opacity: [0.9, 0.8, 0.7],
-                    // },
                   }}
                 > 
                   <p className="average-album-rating" >{album.average_rating.rating__avg ? (album.average_rating.rating__avg).toFixed(1) : "_"}</p>
@@ -54,27 +61,17 @@ export default function Home() {
                   <img
                     style={{width:"100%"}}
                     src={album.cover}
+                    alt={album.title}
                   />
                 </Link>
                 <div className="Album-details">
                   <div className="Album-text">
-                    <div className="Album-name">{album.title == 'My Beautiful Dark Twisted Fantasy' ? 'MBDTF' : album.title.toUpperCase()}</div>
+                    <div className="Album-name">{album.title === 'My Beautiful Dark Twisted Fantasy' ? 'MBDTF' : album.title.toUpperCase()}</div>
                     {/* <body className="Artist-name">{album.artist.join(", ").toUpperCase()}</body>  */}
                     <div className="Album-date">{album.release_date.substring(0,4)}</div>
                     {/* <button className="Like-button">Like</button><button className="Dislike-button">Dislike</button> */}
                   </div>
                   <div className="User-rating-box">
-                    {/* <Box
-                      sx={{
-                        width: 30,
-                        height: 30,
-                        backgroundColor: '#ABABAB',
-                        '&:hover': {
-                          backgroundColor: '#6E6E6E',
-                          opacity: [0.9, 0.8, 0.7],
-                        },
-                      }} onClick={() => console.log(album.rating)}
-                    >  */}
                       {user ? 
                       <form className='input-form' onSubmit={(e) => e.preventDefault()}> 
                         <select className = 'album-rating-dropdown' value={album.rating ? album.rating : ""} onChange={(e) => handleRatingChange(album.id, e.target.value)}>

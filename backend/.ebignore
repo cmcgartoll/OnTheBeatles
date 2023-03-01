@@ -1,0 +1,4 @@
+eb-virt/**
+frontend/**
+backend/.env
+.ebextensions/db-migrate.config

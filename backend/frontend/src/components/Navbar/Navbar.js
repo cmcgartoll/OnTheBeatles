@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-// import { Link } from 'react-router-dom';
+import React from 'react';
 import {
   StyledLink,
 } from './NavbarElements';
@@ -18,7 +17,7 @@ export default function Navbar() {
     <div className='nav-bar'>
       <ul className='nav-grid'>
         <li >
-          <StyledLink className='home-button' to="/" >ON THE BEAT</StyledLink>
+          <StyledLink className='home-button' to="/" >ON THE BEATLES</StyledLink>
         </li>
         <li>
           {user ? (

@@ -81,6 +81,7 @@ class AlbumRatingView(APIView):
         album = Album.objects.get(id=id)
         key = request.headers.get('Authorization')
         rating = request.data.get('rating')
+        print(rating)
         if key is None:
             return Response({'error': 'Authentication is null'}, status=status.HTTP_400_BAD_REQUEST)
         user = CustomUser.objects.get_user_from_token(key=key)
@@ -89,7 +90,11 @@ class AlbumRatingView(APIView):
             AlbumRating.objects.create(album=album, user=user, rating=rating)
             return Response(status=status.HTTP_201_CREATED)
         try:
-            album_rating.update(rating=rating)
-            return Response(status=status.HTTP_200_OK)
+            if rating != 0:
+                album_rating.update(rating=rating)
+                return Response(status=status.HTTP_200_OK)
+            else:
+                album_rating.update(rating=None)
+                return Response(status=status.HTTP_200_OK)
         except:
             return Response(status=status.HTTP_404_NOT_FOUND)

@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
+import os
 import environ
 from pathlib import Path
 import pymysql 
@@ -29,7 +30,7 @@ SECRET_KEY = 'django-insecure-ty$@zkuszrwf%wuam)*t306_b*!@w3xx%l747y-9%4($v2bo_6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['backend-env3.eba-paztsh3x.us-west-2.elasticbeanstalk.com', '*']
 
 
 # Application definition
@@ -94,31 +95,45 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
-DATABASES = {  
-    'default': {  
-        'ENGINE': 'django.db.backends.mysql',  
-        'NAME': env('DATABASE_NAME'),  
-        'USER': env('DATABASE_USER'),  
-        'PASSWORD': env('DATABASE_PASS'),  
-        'HOST': '127.0.0.1',  
-        'PORT': '3306',  
-        'OPTIONS': {  
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"  
-        }  
-    },
-    # 'new': {  
-    #     'ENGINE': 'django.db.backends.mysql',  
-    #     'NAME': 'beatles',  
-    #     'USER': 'root',  
-    #     'PASSWORD': 'admin123',  
-    #     'HOST': '127.0.0.1',  
-    #     'PORT': '3306',  
-    #     'OPTIONS': {  
-    #         'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"  
-    #     }  
-    # }    
-}  
+if 'RDS_HOSTNAME' in os.environ:
+    DATABASES = {  
+        'default': {  
+            'ENGINE': 'django.db.backends.mysql',  
+            'NAME': os.environ['RDS_DB_NAME'],
+            'USER': os.environ['RDS_USERNAME'],
+            'PASSWORD': os.environ['RDS_PASSWORD'],
+            'HOST': os.environ['RDS_HOSTNAME'],
+            'PORT': os.environ['RDS_PORT'],
+            'OPTIONS': {  
+                'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"  
+            }  
+        },
+        # 'new': {  
+        #     'ENGINE': 'django.db.backends.mysql',  
+        #     'NAME': 'beatles',  
+        #     'USER': 'root',  
+        #     'PASSWORD': 'admin123',  
+        #     'HOST': '127.0.0.1',  
+        #     'PORT': '3306',  
+        #     'OPTIONS': {  
+        #         'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"  
+        #     }  
+        # }    
+    }  
+else:
+    DATABASES = {  
+        'default': {  
+            'ENGINE': 'django.db.backends.mysql',  
+            'NAME': env('RDS_DB_NAME'),  
+            'USER': env('RDS_USERNAME'),  
+            'PASSWORD': env('RDS_PASSWORD'),  
+            'HOST': env('RDS_HOSTNAME'),  
+            'PORT': env('RDS_PORT'),  
+            'OPTIONS': {  
+                'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"  
+            }  
+        },
+    }
 
 
 # Password validation
@@ -164,5 +179,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # CORS_ALLOW_ALL = True
 
 CORS_ALLOWED_ORIGINS = [
-     'http://localhost:3000'
+     'http://localhost:3000',
+     'http://www.onthebeatles.s3-website-us-west-2.amazonaws.com',
+     'http://onthebeatles.s3-website-us-west-2.amazonaws.com',
+     'http://www.onthebeatles.com.s3-website-us-west-2.amazonaws.com',
+     'http://www.onthebeatles.com'
 ]

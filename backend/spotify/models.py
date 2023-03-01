@@ -33,12 +33,12 @@ class Album(models.Model):
 
   @property
   def total_ratings(self):
-    return self.user_ratings.all().count()
+    return self.user_ratings.all().exclude(album_ratings=0).count()
   
   @property
   def average_rating(self):
     # return 5
-    return AlbumRating.objects.filter(album=self).aggregate(Avg('rating'))
+    return AlbumRating.objects.filter(album=self).exclude(rating=0).aggregate(Avg('rating'))
     # all_ratings = AlbumRating.objects.filter(album=self).values_list('rating', flat=True)
     # return mean(list(all_ratings))
 
@@ -70,7 +70,7 @@ class Song(models.Model):
 class AlbumRating(models.Model):
   album = models.ForeignKey(Album, on_delete=models.CASCADE)
   user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-  rating = models.PositiveIntegerField(default=0)
+  rating = models.PositiveIntegerField(blank=True, null=True, default=0)
 
 class SongRating(models.Model):
   song = models.ForeignKey(Song, on_delete=models.CASCADE)
