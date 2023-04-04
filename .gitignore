@@ -34,3 +34,4 @@ backend/.DS_Store
 .DS_Store
 .DS_Store
 backend/.DS_Store
+backend/backend/__pycache__/settings.cpython-37.pyc

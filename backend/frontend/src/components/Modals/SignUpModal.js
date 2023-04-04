@@ -54,7 +54,7 @@ const SignUpModal = ({ isShowing, hide }) => {
                   <input className="text-input-box" type="text" id="last_name" name="last_name" minLength="2" value={lastName} placeholder='LAST NAME' onChange={(e) => setLastName(e.target.value)}/>
                   <input className="text-input-box" type="text" id="username" name="username" minLength="2" value={username} placeholder='USERNAME' onChange={(e) => setUsername(e.target.value)}/>
                   <input className="text-input-box" type="email" id="email" name="email" minLength="2" value={email} placeholder='EMAIL' onChange={(e) => setEmail(e.target.value)}/>
-                  <input className="text-input-box" type="tel" id="phone" name="phone"  value={phone} placeholder='+X (XXX)-XXX-XXXX' onChange={(e) => setPhone(e.target.value)}/> {/* pattern="+[0-9] ([0-9]{3})-[0-9]{3}-[0-9]{4}" */}
+                  <input className="text-input-box" type="tel" id="phone" name="phone"  value={phone} placeholder='+1234567890' onChange={(e) => setPhone(e.target.value)}/> {/* pattern="+[0-9][0-9]{3}[0-9]{3}[0-9]{4}" */}
                   <input className="text-input-box" type="password" id="pwd" name="pwd" minLength="8" value={password} placeholder='PASSWORD' onChange={(e) => setPassword(e.target.value)}/>
                   <input className="submit-button" type="submit"/>
                 </form>
